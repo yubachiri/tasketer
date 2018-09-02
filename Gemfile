@@ -18,6 +18,9 @@ gem 'devise'
 
 gem 'slim-rails'
 gem 'html2slim'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'ranked-model'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

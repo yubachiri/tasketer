@@ -2,3 +2,24 @@ h1
   | Pages#index
 p
   | Find me in app/views/pages/index.html.erb
+
+h2
+  | link
+a= link_to 'ログイン', new_user_session_path
+a= link_to '新規登録', new_user_registration_path
+
+
+hr
+
+= form_for Task.new, url: tasks_path, remote: true do |f|
+  = f.label :title
+  = f.text_field :title
+  = f.label :description
+  = f.text_field :description
+  = f.submit '登録'
+
+-if @tasks.present?
+  - @tasks.each do |task|
+    = "title: #{task.title} / #{task.description}"
+    = link_to '削除', task_path(task), method: 'delete', remote: true
+    br

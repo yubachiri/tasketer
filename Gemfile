@@ -16,6 +16,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 
+gem 'slim-rails'
 gem 'html2slim'
 
 group :development, :test do

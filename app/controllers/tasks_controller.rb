@@ -17,6 +17,13 @@ class TasksController < ApplicationController
     end
   end
 
+
+  def sort
+    task = current_user.tasks.find_by(id: params[:task_id])
+    task.update(task_params)
+    render nothing: true
+  end
+
   private
 
   def task_params

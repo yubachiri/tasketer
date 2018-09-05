@@ -1,19 +1,28 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @top_tasks = TopTask.where(user: current_user).rank(:row_order)
+    @next_tasks = NextTask.where(user: current_user).rank(:row_order)
+    @not_important_tasks = NotImportantTask.where(user: current_user).rank(:row_order)
+    @other_tasks = OtherTask.where(user: current_user).rank(:row_order)
+  end
+
   def create
     task = current_user.tasks.new(task_params)
     if task.save
-      redirect_to root_path, notice: 'succeeded!'
+      redirect_to tasks_path, notice: 'succeeded!'
     else
-      redirect_to root_path, alert: 'failed...'
+      redirect_to tasks_path, alert: 'failed...'
     end
   end
 
   def destroy
     task = current_user.tasks.find_by(id: params[:id])
     if task.destroy
-      redirect_to root_path, notice: 'delete succeeded!'
+      redirect_to tasks_path, notice: 'delete succeeded!'
     else
-      redirect_to root_path, alert: 'delete failed...'
+      redirect_to tasks_path, alert: 'delete failed...'
     end
   end
 
@@ -27,7 +36,8 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(
+    key = (params.keys & %w(task top_task next_task not_important_task other_task))[0]
+    params.require(key).permit(
       :title,
       :description,
       :type,

@@ -1,0 +1,6 @@
+-if tasks.present?
+  .sortable-list
+    - tasks.each do |task|
+      .item(data = { model_name: task.class.name.underscore, update_url: task_sort_path(task) })
+        a= "title: #{task.title} / #{task.description}"
+        = link_to '削除', task_path(task), method: 'delete', remote: true

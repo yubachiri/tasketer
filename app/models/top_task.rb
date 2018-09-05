@@ -1,0 +1,2 @@
+class TopTask < Task
+end

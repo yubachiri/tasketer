@@ -1,0 +1,2 @@
+class NotImportantTask < Task
+end

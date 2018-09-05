@@ -9,18 +9,22 @@ a= link_to 'ログイン', new_user_session_path
 a= link_to '新規登録', new_user_registration_path
 
 
-hr
+-if user_signed_in?
+  = link_to 'タスク管理', tasks_path
 
-= form_for Task.new, url: tasks_path, remote: true do |f|
-  = f.label :title
-  = f.text_field :title
-  = f.label :description
-  = f.text_field :description
-  = f.submit '登録'
-
--if @tasks.present?
-  .sortable-list
-    - @tasks.each do |task|
-      .item(data = { model_name: task.class.name.underscore, update_url: task_sort_path(task) })
-        a= "title: #{task.title} / #{task.description}"
-        = link_to '削除', task_path(task), method: 'delete', remote: true
+/ hr
+/
+/ = form_for Task.new, url: tasks_path, remote: true do |f|
+/   = f.label :title
+/   = f.text_field :title
+/   = f.label :description
+/   = f.text_field :description
+/   = f.hidden_field :type, value: 'TopTask'
+/   = f.submit '登録'
+/
+/ -if @tasks.present?
+/   .sortable-list
+/     - @tasks.each do |task|
+/       .item(data = { model_name: task.class.name.underscore, update_url: task_sort_path(task) })
+/         a= "title: #{task.title} / #{task.description}"
+/         = link_to '削除', task_path(task), method: 'delete', remote: true

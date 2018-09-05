@@ -1,0 +1,2 @@
+class OtherTask < Task
+end

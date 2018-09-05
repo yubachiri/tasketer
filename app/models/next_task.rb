@@ -1,0 +1,2 @@
+class NextTask < Task
+end

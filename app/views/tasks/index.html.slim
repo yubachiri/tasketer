@@ -1,13 +1,6 @@
 .ui.grid
   .four.wide.column
-    .ui.raised.segment
-      = form_for Task.new, url: tasks_path, remote: true do |f|
-        = f.label :title
-        = f.text_field :title
-        = f.label :description
-        = f.text_field :description
-        = f.select :type, task_types
-        = f.submit '登録'
+    = render 'new_task_form'
   .twelve.wide.column.ui.raised.segment.task_segment
     .ui.internally.celled.two.column.grid
       .row

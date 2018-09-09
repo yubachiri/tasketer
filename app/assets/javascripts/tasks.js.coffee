@@ -14,3 +14,6 @@ $(document).on 'turbolinks:load', ->
         url: item_data.updateUrl
         dataType: 'json'
         data: params
+# Semantic UI メッセージのクローズ
+  $('.message .close').on 'click', ->
+    $(this).closest('.message').transition('fade')

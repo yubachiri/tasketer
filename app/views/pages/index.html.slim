@@ -3,12 +3,6 @@ h1
 p
   | Find me in app/views/pages/index.html.erb
 
-h2
-  | link
-a= link_to 'ログイン', new_user_session_path
-a= link_to '新規登録', new_user_registration_path
-
-
 -if user_signed_in?
   = link_to 'タスク管理', tasks_path
 

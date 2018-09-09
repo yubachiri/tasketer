@@ -1,5 +1,17 @@
+$import-google-fonts: false;
+@import 'semantic-ui';
+
+body{
+  margin: 30px 30px 30px 30px;
+  background-color: whitesmoke;
+}
+
 .sortable-list {
   .item {
     cursor: row-resize;
   }
+}
+
+.task_segment{
+  margin-top: 14px;
 }

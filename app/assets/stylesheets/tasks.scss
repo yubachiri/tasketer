@@ -7,11 +7,18 @@ body{
 }
 
 .sortable-list {
-  .item {
+  .draggable_icon {
     cursor: row-resize;
   }
 }
 
 .task_segment{
   margin-top: 14px;
+  height: 100%;
+}
+
+table#types{
+  &td{
+    width: 50%;
+  }
 }

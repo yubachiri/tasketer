@@ -1,8 +1,8 @@
-#$(document).on('turbolinks:load', function () {
 $(document).on 'turbolinks:load', ->
   $('.sortable-list').sortable
     axis: 'y'
     items: '.item'
+    handle: '.draggable_icon'
 
     update: (e, ui) ->
       item = ui.item
@@ -14,3 +14,8 @@ $(document).on 'turbolinks:load', ->
         url: item_data.updateUrl
         dataType: 'json'
         data: params
+
+# Semantic UI メッセージのクローズ
+  $('.message .close').on 'click', ->
+    $(this).closest('.message').transition('fade')
+  $('.ui.radio.checkbox').checkbox()

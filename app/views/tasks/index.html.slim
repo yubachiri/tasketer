@@ -1,34 +1,20 @@
-h1
-  | Pages#index
-p
-  | Find me in app/views/pages/index.html.erb
+.ui.grid
+  .four.wide.column
+    = render 'new_task_form'
+  .twelve.wide.column.ui.raised.segment.task_segment
 
-h2
-  | link
-a= link_to 'ログイン', new_user_session_path
-a= link_to '新規登録', new_user_registration_path
-
-
-hr
-
-= form_for Task.new, url: tasks_path, remote: true do |f|
-  = f.label :title
-  = f.text_field :title
-  = f.label :description
-  = f.text_field :description
-  = f.select :type, task_types
-  = f.submit '登録'
-
-= render 'task_list', tasks: @top_tasks
-hr
-= render 'task_list', tasks: @next_tasks
-hr
-= render 'task_list', tasks: @not_important_tasks
-hr
-= render 'task_list', tasks: @other_tasks
-/ -if @top_tasks.present?
-/   .sortable-list
-/     - @top_tasks.each do |task|
-/       .item(data = { model_name: task.class.name.underscore, update_url: task_sort_path(task) })
-/         a= "title: #{task.title} / #{task.description}"
-/         = link_to '削除', task_path(task), method: 'delete', remote: true
+    .ui.internally.celled.two.column.grid
+      .row
+        .column
+          h3 top
+          = render 'task_list', tasks: @top_tasks
+        .column
+          h3 next
+          = render 'task_list', tasks: @next_tasks
+      .row
+        .column
+          h3 not_important
+          = render 'task_list', tasks: @not_important_tasks
+        .column
+          h3 other
+          = render 'task_list', tasks: @other_tasks

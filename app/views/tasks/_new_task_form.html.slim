@@ -1,0 +1,37 @@
+- if flash.present?
+  .ui.positive.message
+    i.close.icon
+    .header
+      - flash.each do |key, value|
+        .alert class=".alert-#{key}"
+          = value
+.ui.raised.segment
+  h3 new task
+  hr
+  .ui.form
+    = form_for Task.new, url: tasks_path, remote: true do |f|
+      .field
+        = f.label :title
+        = f.text_field :title, required: true
+      .field
+        = f.label :description
+        = f.text_area :description
+      .field
+        = f.label :type
+        .field
+          .ui.radio.checkbox
+            = f.label 'TopTask'
+            = f.radio_button :type, 'TopTask', checked: true
+        .field
+          .ui.radio.checkbox
+            = f.label 'NextTask'
+            = f.radio_button :type, 'NextTask'
+        .field
+          .ui.radio.checkbox
+            = f.label 'NotImportantTask'
+            = f.radio_button :type, 'NotImportantTask'
+        .field
+          .ui.radio.checkbox
+            = f.label 'OtherTask'
+            = f.radio_button :type, 'OtherTask'
+      = f.submit '登録', class: 'fluid ui button'

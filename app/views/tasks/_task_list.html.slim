@@ -1,6 +1,14 @@
 -if tasks.present?
-  .sortable-list
+  .ui.middle.aligned.divided.list.sortable-list
     - tasks.each do |task|
       .item(data = { model_name: task.class.name.underscore, update_url: task_sort_path(task) })
-        a= "title: #{task.title} / #{task.description}"
-        = link_to '削除', task_path(task), method: 'delete', remote: true
+        .right.floated.content
+          / .mini.ui.right.floated.button= link_to '削除', task_path(task), method: 'delete', remote: true
+          = link_to task_path(task), method: 'delete', remote: true do
+            i.middle.trash.alternate.outline.aligned.icon.red
+        i.middle.sort.middle.aligned.icon.draggable_icon
+        .content
+          = "#{task.title}"
+          / .mini.ui.right.floated.button= link_to '削除', task_path(task), method: 'delete', remote: true
+-else
+  b タスクはありません

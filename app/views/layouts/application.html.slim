@@ -1,15 +1,14 @@
 doctype html
 html
-  head
-    title
-      | FourthTodo
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  = render 'layouts/header_info'
   body
-    -if flash.present?
-      -flash.each do |key, value|
-        .alert class=".alert-#{key}"
-          = value
-    = yield
+    = render 'layouts/header'
+    / -if flash.present?
+    /   .ui.positive.message
+    /     i.close.icon
+    /     .header
+    /       -flash.each do |key, value|
+    /         .alert class=".alert-#{key}"
+    /           = value
+    .main_content
+      = yield

@@ -20,3 +20,4 @@ $(document).on 'turbolinks:load', ->
     $(this).closest('.message').transition('fade')
   $('.ui.radio.checkbox').checkbox()
   $('.ui.dropdown').dropdown()
+  $('.ui.accordion').accordion()

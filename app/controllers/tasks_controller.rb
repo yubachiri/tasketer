@@ -17,6 +17,13 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    task = Task.find_by(id: params[:id])
+    task.update(task_params)
+    # js呼んでビュー更新すればいい？
+    render nothing: true
+  end
+
   def destroy
     task = current_user.tasks.find_by(id: params[:id])
     if task.update!(archived: true)

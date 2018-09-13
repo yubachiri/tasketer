@@ -5,6 +5,11 @@ class Task < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true
+  validates :type, presence: true
+
+  scope :task_index, -> (user) do
+    where(archived: false, user: user)
+  end
 
   enum matrix_status: [top: 1,
                        next: 2,

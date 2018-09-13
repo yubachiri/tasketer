@@ -1,8 +1,18 @@
 .ui.menu
   .item
-    | test
+    b= link_to 'task', tasks_path
+  .item
+    a= link_to 'Archived Tasks', archived_tasks_path
   / 右に寄せる
-  .item
-    = link_to 'ログイン', new_user_session_path
-  .item
-    = link_to '新規登録', new_user_registration_path
+  .right.menu
+    - if user_signed_in?
+      .ui.dropdown.item
+        = current_user.email
+        i.dropdown.icon
+        .menu
+          a= link_to 'ログアウト', destroy_user_session_path, class: 'item', method: :delete
+    - else
+      .item
+        = link_to 'ログイン', new_user_session_path
+      .item
+        = link_to '新規登録', new_user_registration_path

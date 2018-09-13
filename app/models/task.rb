@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true
+  validates :type, presence: true
 
   scope :task_index, -> (user) do
     where(archived: false, user: user)

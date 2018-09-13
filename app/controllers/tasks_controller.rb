@@ -2,10 +2,10 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @top_tasks = TopTask.where(user: current_user).rank(:row_order)
-    @next_tasks = NextTask.where(user: current_user).rank(:row_order)
-    @not_important_tasks = NotImportantTask.where(user: current_user).rank(:row_order)
-    @other_tasks = OtherTask.where(user: current_user).rank(:row_order)
+    @top_tasks = TopTask.task_index(current_user).rank(:row_order)
+    @next_tasks = NextTask.task_index(current_user).rank(:row_order)
+    @not_important_tasks = NotImportantTask.task_index(current_user).rank(:row_order)
+    @other_tasks = OtherTask.task_index(current_user).rank(:row_order)
   end
 
   def create
@@ -19,10 +19,10 @@ class TasksController < ApplicationController
 
   def destroy
     task = current_user.tasks.find_by(id: params[:id])
-    if task.destroy
-      redirect_to tasks_path, notice: 'delete succeeded!'
+    if task.update!(archived: true)
+      redirect_to tasks_path, notice: 'archived!'
     else
-      redirect_to tasks_path, alert: 'delete failed...'
+      redirect_to tasks_path, alert: 'archive failed...'
     end
   end
 

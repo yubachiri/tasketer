@@ -6,6 +6,10 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
 
+  scope :task_index, -> (user) do
+    where(archived: false, user: user)
+  end
+
   enum matrix_status: [top: 1,
                        next: 2,
                        not_important: 3,

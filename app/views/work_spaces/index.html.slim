@@ -1,0 +1,9 @@
+.ui.form
+  = form_for WorkSpace.new, url: work_spaces_path do |f|
+    .field.ui.action.input
+      = f.text_field :name, placeholder: "New Work Space Name"
+      button.ui.button.teal type='submit'
+        | Work Spaceの追加
+- @work_spaces&.each do |work_space|
+  = work_space.name
+  br

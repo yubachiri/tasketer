@@ -1,19 +1,20 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_work_space
 
   def index
-    @top_tasks = TopTask.task_index(current_user).rank(:row_order)
-    @next_tasks = NextTask.task_index(current_user).rank(:row_order)
-    @not_important_tasks = NotImportantTask.task_index(current_user).rank(:row_order)
-    @other_tasks = OtherTask.task_index(current_user).rank(:row_order)
+    @top_tasks = TopTask.task_index(@work_space).rank(:row_order)
+    @next_tasks = NextTask.task_index(@work_space).rank(:row_order)
+    @not_important_tasks = NotImportantTask.task_index(@work_space).rank(:row_order)
+    @other_tasks = OtherTask.task_index(@work_space).rank(:row_order)
   end
 
   def create
-    task = current_user.tasks.new(task_params)
+    task = @work_space.tasks.new(task_params)
     if task.save
-      redirect_to tasks_path, notice: 'succeeded!'
+      redirect_to work_space_tasks_path(@work_space), notice: 'succeeded!'
     else
-      redirect_to tasks_path, alert: 'failed...'
+      redirect_to work_space_tasks_path(@work_space), alert: 'failed...'
     end
   end
 
@@ -25,17 +26,17 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    task = current_user.tasks.find_by(id: params[:id])
+    task = @work_space.tasks.find_by(id: params[:id])
     if task.update!(archived: true)
-      redirect_to tasks_path, notice: 'archived!'
+      redirect_to work_space_tasks_path(@work_space), notice: 'archived!'
     else
-      redirect_to tasks_path, alert: 'archive failed...'
+      redirect_to work_space_tasks_path(@work_space), alert: 'archive failed...'
     end
   end
 
 
   def sort
-    task = current_user.tasks.find_by(id: params[:task_id])
+    task = @work_space.tasks.find_by(id: params[:task_id])
     task.update!(task_params)
     render nothing: true
   end
@@ -51,4 +52,9 @@ class TasksController < ApplicationController
       :row_order_position
     )
   end
+
+  def set_work_space
+    @work_space = current_user.work_spaces.find_by(id: params[:work_space_id])
+  end
+
 end

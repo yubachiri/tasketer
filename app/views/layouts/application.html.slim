@@ -3,12 +3,5 @@ html
   = render 'layouts/header_info'
   body
     = render 'layouts/header'
-    / -if flash.present?
-    /   .ui.positive.message
-    /     i.close.icon
-    /     .header
-    /       -flash.each do |key, value|
-    /         .alert class=".alert-#{key}"
-    /           = value
     .main_content
       = yield

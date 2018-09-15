@@ -1,6 +1,13 @@
 .ui.menu
-  .item
-    b= link_to 'task', tasks_path
+  .ui.dropdown.item
+    - if @work_space.present?
+      = @work_space.name
+    -else
+      | taks
+    i.dropdown.icon
+    .menu
+      - current_user.work_spaces&.each do |work_space|
+        a= link_to work_space.name, work_space_tasks_path(work_space), class: 'item'
   .item
     a= link_to 'Archived Tasks', archived_tasks_path
   / 右に寄せる
@@ -10,6 +17,7 @@
         = current_user.email
         i.dropdown.icon
         .menu
+          a= link_to 'Work Space', work_spaces_path, class: 'item'
           a= link_to 'ログアウト', destroy_user_session_path, class: 'item', method: :delete
     - else
       .item

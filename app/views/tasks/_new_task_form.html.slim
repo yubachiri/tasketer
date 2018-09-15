@@ -9,7 +9,7 @@
   h3 new task
   hr
   .ui.form
-    = form_for Task.new, url: tasks_path, remote: true do |f|
+    = form_for Task.new, url: work_space_tasks_path(@work_space), remote: true do |f|
       .field
         = f.label :title
         = f.text_field :title, required: true

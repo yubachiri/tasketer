@@ -1,5 +1,5 @@
 .ui.form
-  = form_for task, url: task_path(task), method: :put, remote: true do |f|
+  = form_for task, url: work_space_task_path(@work_space, task), method: :put, remote: true do |f|
     .field
       = f.label :title
       = f.text_field :title, required: true

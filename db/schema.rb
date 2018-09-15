@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_223846) do
+ActiveRecord::Schema.define(version: 2018_09_15_060354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(version: 2018_09_12_223846) do
     t.string "title", null: false
     t.text "description"
     t.integer "row_order"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "matrix_status"
     t.string "type"
     t.boolean "archived", default: false
+    t.bigint "work_space_id"
     t.index ["type"], name: "index_tasks_on_type"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["work_space_id"], name: "index_tasks_on_work_space_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,5 +46,14 @@ ActiveRecord::Schema.define(version: 2018_09_12_223846) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "tasks", "users"
+  create_table "work_spaces", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_work_spaces_on_user_id"
+  end
+
+  add_foreign_key "tasks", "work_spaces"
+  add_foreign_key "work_spaces", "users"
 end

@@ -1,5 +1,5 @@
 -if tasks.present?
-  .ui.middle.aligned.divided.list.sortable-list
+  .ui.middle.aligned.divided.list.sortable class="sortable-list-#{tasks.first.class}"
     - tasks.each do |task|
       .ui.accordion.item(data={model_name: task.class.name.underscore, update_url: task_sort_path(task)})
         .right.floated.content

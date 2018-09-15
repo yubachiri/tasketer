@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   def update
     task = Task.find_by(id: params[:id])
     task.update(task_params)
-    # js呼んでビュー更新すればいい？
+    # TODO: ビューへの反映
     render nothing: true
   end
 
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
 
   def sort
     task = current_user.tasks.find_by(id: params[:task_id])
-    task.update(task_params)
+    task.update!(task_params)
     render nothing: true
   end
 

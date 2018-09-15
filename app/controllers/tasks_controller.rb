@@ -17,6 +17,13 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    task = Task.find_by(id: params[:id])
+    task.update(task_params)
+    # TODO: ビューへの反映
+    render nothing: true
+  end
+
   def destroy
     task = current_user.tasks.find_by(id: params[:id])
     if task.update!(archived: true)
@@ -29,7 +36,7 @@ class TasksController < ApplicationController
 
   def sort
     task = current_user.tasks.find_by(id: params[:task_id])
-    task.update(task_params)
+    task.update!(task_params)
     render nothing: true
   end
 

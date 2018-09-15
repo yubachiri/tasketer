@@ -1,0 +1,9 @@
+.ui.form
+  = form_for task, url: task_path(task), method: :put, remote: true do |f|
+    .field
+      = f.label :title
+      = f.text_field :title, required: true
+    .field
+      = f.label :description
+      = f.text_area :description
+    = f.submit 'Update!', class: 'fluid ui button'

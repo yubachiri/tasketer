@@ -6,7 +6,7 @@
       | taks
     i.dropdown.icon
     .menu
-      - current_user.work_spaces&.each do |work_space|
+      - current_user&.work_spaces&.each do |work_space|
         a= link_to work_space.name, work_space_tasks_path(work_space), class: 'item'
   .item
     a= link_to 'Archived Tasks', archived_tasks_path
@@ -18,9 +18,9 @@
         i.dropdown.icon
         .menu
           a= link_to 'Work Space', work_spaces_path, class: 'item'
-          a= link_to 'ログアウト', destroy_user_session_path, class: 'item', method: :delete
+          a= link_to 'Logout', destroy_user_session_path, class: 'item', method: :delete
     - else
       .item
-        = link_to 'ログイン', new_user_session_path
+        = link_to 'Login', new_user_session_path
       .item
-        = link_to '新規登録', new_user_registration_path
+        = link_to 'New Account', new_user_registration_path

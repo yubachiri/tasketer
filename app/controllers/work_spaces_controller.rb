@@ -1,13 +1,8 @@
 class WorkSpacesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @work_spaces = current_user.work_spaces
-  end
-
-  def show
-
-  end
-
-  def new
   end
 
   def create

@@ -1,5 +1,5 @@
 class ArchivedTasksController < ApplicationController
   def index
-    @archived_tasks = current_user.tasks.where(archived: true)
+    @archived_tasks = Task.joins(:work_space).merge(WorkSpace.where(user: current_user)).where(archived: true)
   end
 end

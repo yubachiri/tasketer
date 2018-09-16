@@ -12,8 +12,5 @@ class Task < ApplicationRecord
     where(archived: false, work_space: work_space)
   end
 
-  enum matrix_status: [top: 1,
-                       next: 2,
-                       not_important: 3,
-                       other: 4]
+  enum matrix_status: {top: 'TopTask', next: 'NextTask', not_important: 'NotImportantTask', other: 'OtherTask'}
 end

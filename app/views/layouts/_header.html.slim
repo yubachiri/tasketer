@@ -1,10 +1,13 @@
--if @top_page
+-if @simple_header
   .ui.large.secondary.pointing.menu
     a.item
-      h2 Tasketer!
+      h2= link_to 'Tasketer!', root_path, class: 'black'
     .right.item
-      = link_to 'Login', new_user_session_path, class: 'item'
-      = link_to 'New Account', new_user_registration_path, class: 'item'
+      - unless user_signed_in?
+        = link_to 'Log in', new_user_session_path, class: 'item'
+        = link_to 'New Account', new_user_registration_path, class: 'item'
+      - else
+        = link_to 'Work Space', work_spaces_path, class: 'item'
 -else
   .ui.menu
     .ui.dropdown.item

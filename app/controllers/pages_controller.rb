@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   # トップページにしたい
   def index
-    @top_page = true
+    @simple_header = true
   end
 end

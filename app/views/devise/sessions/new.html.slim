@@ -1,18 +1,29 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+br
+.ui.middle.aligned.centered.grid
+  .six.wide.column
+    .ui.header
+      .content
+        | Log in
+    = render 'shared/messages'
+    .ui.segment
+      .ui.form
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .field
+            = f.label :email
+            = f.email_field :email, autofocus: true, autocomplete: "email", required: true
+          .field
+            = f.label :password
+            = f.password_field :password, autocomplete: "current-password", required: true
+          - if devise_mapping.rememberable?
+            .inline.field
+              .ui.checkbox
+                = f.check_box :remember_me
+                = f.label :remember_me
+          .actions
+            = f.submit "Log in", class: 'ui fluid green button'
+      br
+      .ui.horizontal.divider
+        | or
+      br
+      p If you don't have Tasketer account,
+      = link_to 'Sign up', new_user_registration_path, class: 'ui fluid green button'

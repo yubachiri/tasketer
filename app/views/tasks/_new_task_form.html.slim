@@ -1,10 +1,5 @@
-- if flash.present?
-  .ui.positive.message
-    i.close.icon
-    .header
-      - flash.each do |key, value|
-        .alert class=".alert-#{key}"
-          = value
+= render 'shared/messages'
+
 .ui.raised.segment
   h3 new task
   hr

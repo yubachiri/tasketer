@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_own_work_space
   before_action :set_work_space
 
   def index
@@ -12,9 +13,11 @@ class TasksController < ApplicationController
   def create
     task = @work_space.tasks.new(task_params)
     if task.save
-      redirect_to work_space_tasks_path(@work_space), notice: 'succeeded!'
+      flash[:success] = 'succeeded!'
+      redirect_to work_space_tasks_path(@work_space)
     else
-      redirect_to work_space_tasks_path(@work_space), alert: 'failed...'
+      flash[:error] = 'failed...'
+      redirect_to work_space_tasks_path(@work_space)
     end
   end
 
@@ -27,13 +30,14 @@ class TasksController < ApplicationController
 
   def destroy
     task = @work_space.tasks.find_by(id: params[:id])
-    if task.update!(archived: true)
-      redirect_to work_space_tasks_path(@work_space), notice: 'archived!'
+    if task&.update!(archived: true)
+      flash[:success] = 'archived!'
+      redirect_to work_space_tasks_path(@work_space)
     else
-      redirect_to work_space_tasks_path(@work_space), alert: 'archive failed...'
+      flash[:error] = 'archive failed...'
+      redirect_to work_space_tasks_path(@work_space)
     end
   end
-
 
   def sort
     task = @work_space.tasks.find_by(id: params[:task_id])
@@ -51,6 +55,14 @@ class TasksController < ApplicationController
       :type,
       :row_order_position
     )
+  end
+
+  def check_own_work_space
+    ws = WorkSpace.find_by(id: params[:work_space_id])
+    if ws.user != current_user
+      flash[:error] = "エラーが発生しました。"
+      redirect_to work_spaces_path
+    end
   end
 
   def set_work_space

@@ -1,4 +1,33 @@
-h1
-  | Pages#index
-p
-  | Find me in app/views/pages/index.html.erb
+.ui.text.container#top
+  h1.ui.header.centered I'm Tasketer!
+  p.ui.header.centered Management task flexible
+  br
+  .ui.two.column.centered.grid
+    .column
+      = link_to 'Get Started!', new_user_registration_path, class: 'centered fluid massive ui button green'
+
+.ui.vertical.stripe.segment
+  .ui.middle.aligned.stackable.grid.container
+    .row
+      .eight.wide.column
+        .ui.middle.aligned.divided.list
+          .item.content.top_list
+            i.check.icon
+            | add task
+          .item.content.top_list
+            i.check.icon
+            | sort task by drag and drop
+          .item.content.top_list
+            i.check.icon
+            | manage task in four segment
+      .eight.wide.right.floated.column
+        = image_tag('demo.mov.gif')
+    .ui.divider#top_divider
+    .row
+      .eight.wide.column
+        .ui.middle.aligned.divided.list
+          .item.content.top_list
+            i.check.icon
+            | separate task by work space
+      .eight.wide.right.floated.column
+        = image_tag('ws_demo.mov.gif')

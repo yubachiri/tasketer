@@ -1,24 +1,28 @@
-h2
-  | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+br
+.ui.middle.aligned.centered.grid
+  .six.wide.column
+    .ui.header
+      .content
+        | New Account
+    = render 'shared/messages'
+    .ui.segment
+      .ui.form
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          / = devise_error_messages!
+          .field
+            = f.label :email
+            = f.email_field :email, autofocus: true, autocomplete: "email", required: true
+          .field
+            = f.label :password
+            = f.password_field :password, autocomplete: "new-password", required: true
+          .field
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "new-password", required: true
+          .actions
+            = f.submit "New Account", class: 'ui fluid green submit button'
+      br
+      .ui.horizontal.divider
+        | or
+      br
+      p Do you have Tasketer account?
+      = link_to 'Login', new_user_session_path, class: 'ui fluid green button'

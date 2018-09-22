@@ -1,7 +1,8 @@
 doctype html
 html
   = render 'layouts/header_info'
-  body
-    = render 'layouts/header'
-    .main_content
+  body.Site
+    .main_container.Site-content
+      = render 'layouts/header'
       = yield
+    = render 'layouts/footer'

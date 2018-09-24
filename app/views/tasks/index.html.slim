@@ -6,15 +6,16 @@
     .ui.internally.celled.two.column.grid
       .row
         .column
-          h3 top
+          / メソッド化したい
+          h3= render 'title_edit', segment_type: SegmentTitle.segments[:top], work_space: @work_space
           = render 'task_list', tasks: @top_tasks
         .column
-          h3 next
+          h3= render 'title_edit', segment_type: SegmentTitle.segments[:next], work_space: @work_space
           = render 'task_list', tasks: @next_tasks
       .row
         .column
-          h3 not_important
+          h3= render 'title_edit', segment_type: SegmentTitle.segments[:not_important], work_space: @work_space
           = render 'task_list', tasks: @not_important_tasks
         .column
-          h3 other
+          h3= render 'title_edit', segment_type: SegmentTitle.segments[:other], work_space: @work_space
           = render 'task_list', tasks: @other_tasks

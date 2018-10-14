@@ -6,7 +6,7 @@
           = link_to work_space_task_path(@work_space, task), method: 'delete', remote: true do
             i.middle.trash.alternate.outline.aligned.icon.red
         i.middle.sort.middle.aligned.icon.draggable_icon
-        .content.title
+        .content.title[id="task-#{task.id}"]
           = "#{task.title}"
         .content= render 'task_edit_form', task: task
 -else

@@ -1,0 +1,43 @@
+/ segment titleのデフォルト設定とワークスペース一覧・segment title一覧が見れる編集できるページ
+
+- @work_spaces.each do |work_space|
+  = work_space.name
+
+= render 'shared/messages'
+
+.ui.segment
+  .row
+    .ui.center.aligned.grid#add_work_space
+      .ui.form
+        / デフォルトのsegment titleを設定するフォームを置く
+          四象限と同じ並びで
+
+        / = form_for WorkSpace.new, url: work_spaces_path do |f|
+        /   .field.ui.action.input
+        /     = f.text_field :name, placeholder: "New Work Space Name..."
+        /     button.ui.button.teal type='submit'
+        /       | Add New Work Space
+  .ui.divider
+  .ui.center.aligned.grid
+    .column
+      table.ui.celled.padded.table
+        thead
+          tr
+            th Name
+            th.item_count_header Top
+            th.item_count_header Next
+            th.item_count_header NotImportant
+            th.item_count_header Other
+        tbody
+          - @work_spaces&.each do |work_space|
+            tr
+              td
+                = link_to work_space.name, work_space_tasks_path(work_space)
+              td.right.aligned.item_count
+                = item_count(work_space, :top)
+              td.right.aligned.item_count
+                = item_count(work_space, :next)
+              td.right.aligned.item_count
+                = item_count(work_space, :not_important)
+              td.right.aligned.item_count
+                = item_count(work_space, :other)

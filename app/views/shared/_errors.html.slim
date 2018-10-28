@@ -1,0 +1,5 @@
+- if object.errors.any?
+  - object.errors.full_messages.each do |msg|
+    p.text-error.text-s12.mt-1
+      = msg
+  br

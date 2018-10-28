@@ -1,11 +1,9 @@
 class WorkSpace < ApplicationRecord
   belongs_to :user
   has_many :tasks
-  has_many :segment_titles
+  # has_one :segment_title
+  has_one :custom_title
 
   validates :name, presence: true
 
-  def segment_model(segment_type)
-    SegmentTitle.get_title(self, segment_type)
-  end
 end

@@ -2,5 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :work_spaces
-  has_many :segment_titles
+  # カスタムデフォルトタイトル
+  # has_one :segment_title
+  has_one :default_title
 end

@@ -16,10 +16,14 @@
         thead
           tr
             th Name
-            th.item_count Top
-            th.item_count Next
-            th.item_count NotImportant
-            th.item_count Other
+            th.item_count
+              = segment_label(nil, current_user, SegmentTitle.segments[:seg_first])
+            th.item_count
+              = segment_label(nil, current_user, SegmentTitle.segments[:seg_second])
+            th.item_count
+              = segment_label(nil, current_user, SegmentTitle.segments[:seg_third])
+            th.item_count
+              = segment_label(nil, current_user, SegmentTitle.segments[:seg_last])
         tbody
           - @work_spaces&.each do |work_space|
             tr

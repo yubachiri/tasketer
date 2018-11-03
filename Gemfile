@@ -22,6 +22,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'ranked-model'
 
+gem 'seed-fu'
+
 gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
 
 group :development, :test do

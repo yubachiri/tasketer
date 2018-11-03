@@ -9,7 +9,7 @@
 
 .ui.vertical.stripe.segment
   .ui.middle.aligned.stackable.grid.container
-    .row
+    .row.top_segment
       .eight.wide.column
         .ui.middle.aligned.divided.list
           .item.content.top_list
@@ -23,8 +23,8 @@
             | manage task in four segment
       .eight.wide.right.floated.column
         = image_tag('demo.mov.gif')
-    .ui.divider#top_divider
-    .row
+    .ui.divider
+    .row.top_segment
       .eight.wide.column
         .ui.middle.aligned.divided.list
           .item.content.top_list
@@ -32,3 +32,19 @@
             | separate task by work space
       .eight.wide.right.floated.column
         = image_tag('ws_demo.mov.gif')
+    .ui.divider
+    .row.top_segment
+      .eight.wide.column
+        .ui.middle.aligned.divided.list
+          .item.content.top_list
+            i.check.icon
+            | customize segment title
+      .eight.wide.right.floated.column
+        = image_tag('title_index.png')
+    .row
+      .eight.wide.column
+        | priority matrix
+        = image_tag('matrix_sample.png')
+      .eight.wide.column
+        | workflow
+        = image_tag('flow_sample.png')

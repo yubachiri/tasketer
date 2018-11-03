@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
   root 'pages#index'
   resources :archived_tasks, only: [:index]
-  resources :work_spaces, only: [:index, :create] do
+  resources :work_spaces, only: [:index, :create, :update, :destroy] do
     resources :tasks do
       put :sort
     end

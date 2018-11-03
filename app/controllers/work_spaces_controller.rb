@@ -11,6 +11,19 @@ class WorkSpacesController < ApplicationController
     redirect_to work_spaces_path
   end
 
+  def update
+    work_space = WorkSpace.find_by(id: params[:id])
+    if work_space.update(work_space_params)
+      redirect_to work_spaces_path, notice: 'update succeeded!'
+    else
+      redirect_to work_spaces_path, alert: 'failed...'
+    end
+  end
+
+  def destroy
+
+  end
+
 
   private
 

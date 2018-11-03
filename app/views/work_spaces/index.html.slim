@@ -24,6 +24,8 @@
               = segment_label(nil, current_user, SegmentTitle.segments[:seg_third])
             th.item_count
               = segment_label(nil, current_user, SegmentTitle.segments[:seg_last])
+            th.item_count
+              | Edit / Delete
         tbody
           - @work_spaces&.each do |work_space|
             tr
@@ -37,3 +39,6 @@
                 = item_count(work_space, :not_important)
               td.right.aligned.item_count
                 = item_count(work_space, :other)
+              td
+                button.ui.teal.fluid.button.ws-name-edit[id="edit-#{work_space.id}"] edit
+              = render 'form', work_space: work_space

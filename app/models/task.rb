@@ -8,9 +8,14 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :type, presence: true
 
-  scope :task_index, -> (work_space) do
-    where(archived: false, work_space: work_space)
-  end
+  scope :task_index, -> (work_space) { active.where(work_space: work_space) }
+  scope :active, -> { where(archived: false) }
+  scope :archived, -> { where(archived: true) }
 
-  enum matrix_status: {top: 'TopTask', next: 'NextTask', not_important: 'NotImportantTask', other: 'OtherTask'}
+  enum matrix_status: { top: 'TopTask', next: 'NextTask', not_important: 'NotImportantTask', other: 'OtherTask' }
+
+
+  def archive!
+    update!(archived: true)
+  end
 end

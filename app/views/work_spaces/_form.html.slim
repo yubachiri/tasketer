@@ -1,0 +1,21 @@
+.ui.edit.modal[id="edit-#{work_space.id}"]
+  .main_container
+    h3 = work_space.name
+    .ui.divider
+    .ui.form
+      = form_for work_space do |f|
+        .field
+          = f.label :name, 'New Name'
+          = f.text_field :name, value: nil
+        .field
+          = f.submit 'update!', class: 'ui teal button fluid'
+    br
+    .ui.horizontal.divider
+      | Or
+    br
+    b If you want to delete this work space, push the button.
+    br
+    br
+    = link_to work_space_path(work_space), method: :delete, data: { confirm: "Are you sure?" } do
+      .ui.red.fluid.button
+        | Delete WorkSpace

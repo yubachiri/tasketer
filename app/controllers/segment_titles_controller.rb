@@ -2,7 +2,7 @@ class SegmentTitlesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @work_spaces = current_user.work_spaces
+    @work_spaces = WorkSpace.owned_by(current_user)
     @default_title = current_user.default_title || DefaultTitle.new(user: current_user)
   end
 

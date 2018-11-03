@@ -30,7 +30,7 @@ class TasksController < ApplicationController
 
   def destroy
     task = @work_space.tasks.find_by(id: params[:id])
-    if task&.update!(archived: true)
+    if task&.archive!
       flash[:success] = 'archived!'
       redirect_to work_space_tasks_path(@work_space)
     else
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
 
   def check_own_work_space
     ws = WorkSpace.find_by(id: params[:work_space_id])
-    if ws.user != current_user
+    unless ws.owned_by?(current_user)
       flash[:error] = "エラーが発生しました。"
       redirect_to work_spaces_path
     end

@@ -1,4 +1,4 @@
-SegmentTitle.seed do |s|
+ServiceDefaultTitle.seed do |s|
   s.id = 1
   s.user = nil
   s.work_space = nil

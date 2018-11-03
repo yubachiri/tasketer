@@ -17,7 +17,7 @@
         | Tasketer
       i.dropdown.icon
       .menu
-        - current_user&.work_spaces&.each do |work_space|
+        - WorkSpace.owned_by(current_user).each do |work_space|
           a= link_to work_space.name, work_space_tasks_path(work_space), class: 'item'
     / .item
       / a= link_to 'Archived Tasks', archived_tasks_path

@@ -15,18 +15,18 @@
         = f.label :type
         .field
           .ui.radio.checkbox
-            = f.label 'TopTask'
+            = f.label segment_label(@work_space, user, SegmentTitle.segments[:seg_first])
             = f.radio_button :type, 'TopTask', checked: true
         .field
           .ui.radio.checkbox
-            = f.label 'NextTask'
+            = f.label segment_label(@work_space, user, SegmentTitle.segments[:seg_second])
             = f.radio_button :type, 'NextTask'
         .field
           .ui.radio.checkbox
-            = f.label 'NotImportantTask'
+            = f.label segment_label(@work_space, user, SegmentTitle.segments[:seg_third])
             = f.radio_button :type, 'NotImportantTask'
         .field
           .ui.radio.checkbox
-            = f.label 'OtherTask'
+            = f.label segment_label(@work_space, user, SegmentTitle.segments[:seg_last])
             = f.radio_button :type, 'OtherTask'
       = f.submit 'Add!', class: 'fluid ui button'

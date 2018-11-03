@@ -10,4 +10,5 @@ Rails.application.routes.draw do
       put :sort
     end
   end
+  resources :segment_titles
 end

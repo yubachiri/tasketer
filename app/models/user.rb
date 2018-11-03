@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :work_spaces
-  # has_many :tasks
+  # カスタムデフォルトタイトル
+  # has_one :segment_title
+  has_one :default_title
 end

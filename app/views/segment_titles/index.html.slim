@@ -1,0 +1,60 @@
+= render 'shared/messages'
+= render 'shared/errors', object: @default_title
+
+.ui.segment
+  .row
+    .ui.center.aligned.grid#add_work_space
+      .ui.form
+        h3 Default Title Configuration
+        = form_for @default_title.becomes(SegmentTitle) do |f|
+          .fields
+            .field
+              = f.label :seg_first, '1'
+              = f.text_field :seg_first, placeholder: "top"
+            .field
+              = f.label :seg_second, '2'
+              = f.text_field :seg_second, placeholder: "next"
+            .field
+              = f.label :seg_third, '3'
+              = f.text_field :seg_third, placeholder: "not_important"
+            .field
+              = f.label :seg_last, '4'
+              = f.text_field :seg_last, placeholder: "last"
+          .field
+            = f.hidden_field :type, value: 'DefaultTitle'
+            = f.hidden_field :user_id, value: current_user.id
+            = f.submit 'update!', class: 'ui button fluid green'
+
+  .ui.divider
+  .ui.centered.grid
+    .row
+      .three.wide.column
+        | Name
+      .two.wide.column
+        = segment_label(nil, current_user, SegmentTitle.segments[:seg_first])
+      .two.wide.column
+        = segment_label(nil, current_user, SegmentTitle.segments[:seg_second])
+      .two.wide.column
+        = segment_label(nil, current_user, SegmentTitle.segments[:seg_third])
+      .two.wide.column
+        = segment_label(nil, current_user, SegmentTitle.segments[:seg_last])
+      .two.wide.column
+  - @work_spaces&.each do |work_space|
+    = form_for (work_space.custom_title || CustomTitle.new(work_space: work_space)).becomes(SegmentTitle) do |f|
+      .ui.divider
+      .ui.centered.grid
+        .row.ui.form
+          .three.wide.column
+            = link_to work_space.name, work_space_tasks_path(work_space)
+          .two.wide.column
+            = f.text_field :seg_first
+          .two.wide.column
+            = f.text_field :seg_second
+          .two.wide.column
+            = f.text_field :seg_third
+          .two.wide.column
+            = f.text_field :seg_last
+          .two.wide.column
+            = f.hidden_field :type, value: 'CustomTitle'
+            = f.hidden_field :work_space_id, value: work_space.id
+            = f.submit 'update!', class: 'ui button green'

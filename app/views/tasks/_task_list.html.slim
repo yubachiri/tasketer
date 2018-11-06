@@ -10,4 +10,4 @@
           = "#{task.title}"
         .content= render 'task_edit_form', task: task
 -else
-  b no task
+  .ui.middle.aligned.divided.list.sortable class="sortable-list-#{klass}"

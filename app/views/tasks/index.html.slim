@@ -8,14 +8,14 @@
         .column
           / メソッド化したい
           h3= render 'title_edit', segment_type: SegmentTitle.segments[:seg_first], work_space: @work_space, user: current_user
-          = render 'task_list', tasks: @top_tasks
+          = render 'task_list', tasks: @top_tasks, klass: 'TopTask'
         .column
           h3= render 'title_edit', segment_type: SegmentTitle.segments[:seg_second], work_space: @work_space, user: current_user
-          = render 'task_list', tasks: @next_tasks
+          = render 'task_list', tasks: @next_tasks, klass: 'NextTask'
       .row
         .column
           h3= render 'title_edit', segment_type: SegmentTitle.segments[:seg_third], work_space: @work_space, user: current_user
-          = render 'task_list', tasks: @not_important_tasks
+          = render 'task_list', tasks: @not_important_tasks, klass: 'NotImportantTask'
         .column
           h3= render 'title_edit', segment_type: SegmentTitle.segments[:seg_last], work_space: @work_space, user: current_user
-          = render 'task_list', tasks: @other_tasks
+          = render 'task_list', tasks: @other_tasks, klass: 'OtherTask'

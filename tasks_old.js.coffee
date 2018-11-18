@@ -30,3 +30,6 @@ doUpdate = (e, ui, taskName) ->
     url: item_data.updateUrl
     dataType: 'json'
     data: params
+
+    success: (data, textStatus, jqXHR) ->
+      alert data

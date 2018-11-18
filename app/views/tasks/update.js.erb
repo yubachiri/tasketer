@@ -1,0 +1,2 @@
+var target = '.content.title#task-' + <%= @task.id %>;
+$(target).text("<%= escape_javascript(@task.title) %>");

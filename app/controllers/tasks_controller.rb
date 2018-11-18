@@ -22,10 +22,8 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = Task.find_by(id: params[:id])
-    task.update(task_params)
-    # TODO: ビューへの反映
-    render nothing: true
+    @task = Task.find_by(id: params[:id])
+    @task.update(task_params)
   end
 
   def destroy

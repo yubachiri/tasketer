@@ -1,7 +1,7 @@
 - if tasks.present?
   .ui.middle.aligned.divided.list.sortable class="sortable-list-#{tasks.first.class}"
     - tasks.each do |task|
-      .ui.accordion.item(data={ model_name: task.class.name.underscore, update_url: work_space_task_sort_path(@work_space, task) })
+      .ui.accordion.item data={ model_name: task.class.name.underscore, update_url: work_space_task_sort_path(@work_space, task) }
         .right.floated.content
           = link_to work_space_task_path(@work_space, task), method: 'delete', remote: true do
             i.middle.trash.alternate.outline.aligned.icon.red

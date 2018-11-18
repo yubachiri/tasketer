@@ -41,8 +41,11 @@ class TasksController < ApplicationController
 
   def sort
     task = @work_space.tasks.find_by(id: params[:task_id])
+    task.update!(type: task_params[:type])
+    task = Task.find_by(id: params[:task_id])
     task.update!(task_params)
-    render nothing: true
+
+    render json: task
   end
 
   private

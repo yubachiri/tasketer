@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   include RankedModel
-  ranks :row_order, with_same: :work_space_id
+  ranks :row_order, with_same: :work_space_id, scope: :active
 
   belongs_to :work_space
   delegate :user, to: :work_space

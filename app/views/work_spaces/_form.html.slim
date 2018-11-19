@@ -1,7 +1,12 @@
 .ui.edit.modal[id="edit-#{work_space.id}"]
+  .header
+    .ui.grid
+      .thirteen.wide.column
+        h3 = work_space.name
+      .actions.three.wide.column
+        a.ui.cancel#modal-close
+          | × close
   .main_container
-    h3 = work_space.name
-    .ui.divider
     .ui.form
       = form_for work_space do |f|
         .field

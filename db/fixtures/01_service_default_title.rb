@@ -5,6 +5,6 @@ ServiceDefaultTitle.seed do |s|
   s.type = 'ServiceDefaultTitle'
   s.seg_first = 'Top'
   s.seg_second = 'Next'
-  s.seg_third = 'NotImportant'
+  s.seg_third = 'Not_Important'
   s.seg_last = 'Other'
 end

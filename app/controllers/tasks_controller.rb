@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = @work_space.tasks.new(task_params)
+    task = @work_space.tasks.new(task_params.merge(row_order_position: :first))
     if task.save
       flash[:success] = 'succeeded!'
       redirect_to work_space_tasks_path(@work_space)
